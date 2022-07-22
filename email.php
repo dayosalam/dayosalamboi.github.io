@@ -1,32 +1,23 @@
-
-
-
-
-
-
 <?php
-  $name = $_POST['name'];
-  $visitor_email = $_POST['email'];
-  $message = $_POST['message'];
-?>
+$name = $_POST['name'];
+$visitor_email = $_POST['email'];
+$mail = $_POST['message'];
+$to = "dayosalamboi@gmail.com";
+$subject = "New Form submission";
 
-<?php
-	$email_from = 'dayosalamboi@gmail.com';
+$message = "You have received a new message from the user $name.\n".
+                          "Here is the message:\n $mail".
+$headers = "Reply-To: $visitor_email \r\n";
+$time = time()
 
-	$email_subject = "New Form submission";
+$retval = mail($to,$subject,$message,$headers);
+if( $retval == true ) {
+    echo "Message sent successfully...";
+ }else {
+    echo "Message could not be sent...";
+ }
 
-	$email_body = "You have received a new message from the user $name.\n".
-                            "Here is the message:\n $message".
-?>
-
-<?php
-
-  $to = "dayosalamboi@gmail.com";
-
-  $headers = "From: $email_from \r\n";
-
-  $headers .= "Reply-To: $visitor_email \r\n";
-
-  mail($to,$email_subject,$email_body,$headers);
+print "Script Ran $time";
 
  ?>
+
